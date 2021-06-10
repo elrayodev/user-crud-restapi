@@ -1,5 +1,6 @@
 const { Router } = require( 'express' );
 const { check } = require('express-validator');
+const { JsonWebTokenError } = require('jsonwebtoken');
 
 const { usersGet, 
         usersPut, 
@@ -8,7 +9,16 @@ const { usersGet,
         usersPatch } = require( '../controllers/user-controllers' );
 
 const { esRolValido, emailExiste, usuarioExistePorId } = require('../helpers/db-validators');
-const { validarCampos } = require('../middlewares/validar-campos');
+
+// const { validarCampos } = require('../middlewares/validar-campos');
+// const { validarJWT } = require('../middlewares/validar-jwt');
+// const { esAdmin, tieneRol } = require('../middlewares/validar-roles');
+
+const {
+        validarCampos,
+        validarJWT,
+        esAdmin,
+        tieneRol } = require('../middlewares');
 
 
 const router = Router();
@@ -33,6 +43,8 @@ router.post('/', [
 ] ,usersPost);
 
 router.delete('/:id', [
+        validarJWT,
+        tieneRol('ADMIN_ROLE','USER_ROLE','VENTAS ROLE'),
         check('id', 'No es un id válido').isMongoId().custom( usuarioExistePorId ),
         validarCampos
 ], usersDelete );

@@ -37,7 +37,10 @@ const UsuarioSchema = Schema({
 
 UsuarioSchema.methods.toJSON = function() {
     // Sacamos __v y psswd de json al momento de retornar el result y guardamos el resto de atributos en user con ..user
-    const { __v, psswd, ...user } = this.toObject();
+    const { __v, psswd, _id, ...user } = this.toObject();
+
+    // Cambiamos nombre de propiedad _id a uid
+    user.uid = _id;
     return user;
 }
 

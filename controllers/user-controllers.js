@@ -77,15 +77,26 @@ const usersDelete = async( req, res ) => {
 
     const { id } = req.params;
 
+    const uid = req.uid;
+    const userAuth = req.usuarioAuth;
+
     // const usuario = await Usuario.findByIdAndDelete( id );
 
     // Cambiamos estado de usuario en DB en vez de eliminar para la continuidad de la integridad de nuestros datos en BD
     const usuario = await Usuario.findByIdAndUpdate( id, { estado: false} );
 
+    if( !usuario ){
+        return res.status(400).json({ 
+            msgn: `usuario con id ${ id } no encontrado`
+        });
+    }
+
 
     res.json({
         msg: 'State User was successfully updated',
-        usuario
+        usuario,
+        uid,
+        userAuth
     });
 };
 
