@@ -87,10 +87,9 @@ const usersDelete = async( req, res ) => {
 
     if( !usuario ){
         return res.status(400).json({ 
-            msgn: `usuario con id ${ id } no encontrado`
+            msg: `usuario con id ${ id } no encontrado`
         });
     }
-
 
     res.json({
         msg: 'State User was successfully updated',
