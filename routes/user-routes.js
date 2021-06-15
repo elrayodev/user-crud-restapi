@@ -31,7 +31,7 @@ router.put('/:id', [
         check('id', 'No es un id válido').isMongoId().custom( usuarioExistePorId ),
         check('rol').custom( esRolValido ),
         validarCampos
-], usersPut );
+], usersPut);
 
 router.post('/', [
         check('nombre', 'El nombre es obligatorio').not().isEmpty(),
@@ -40,7 +40,7 @@ router.post('/', [
         // check('rol', 'No es un rol válido').isIn(['ADMIN_ROLE','USER_ROLE']),
         check('rol').custom( esRolValido ),
         validarCampos
-] ,usersPost);
+], usersPost);
 
 router.delete('/:id', [
         validarJWT,
@@ -48,7 +48,7 @@ router.delete('/:id', [
         check('id', 'No es un id válido').isMongoId(),
         check('id', 'El usuario no existe').custom( usuarioExistePorId ),
         validarCampos
-], usersDelete );
+], usersDelete);
 
 router.patch('/', usersPatch );
 

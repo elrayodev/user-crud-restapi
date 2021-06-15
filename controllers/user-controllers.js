@@ -3,10 +3,7 @@ const { response, request } = require( 'express' );
 const bcrypt = require('bcryptjs');
 const Usuario = require('../models/user');
 
-const res = response;
-const req = request;
-
-const usersGet = async( req, res ) => {
+const usersGet = async( req = request, res = response ) => {
 
     const { limite = 5, desde = 0 } = req.query;
     const q = { estado: true };
@@ -32,7 +29,7 @@ const usersGet = async( req, res ) => {
     });
 };
 
-const usersPut = async( req, res ) => {
+const usersPut = async( req = request, res = response ) => {
 
     const { id } = req.params;
 
@@ -52,7 +49,7 @@ const usersPut = async( req, res ) => {
 
 };
 
-const usersPost = async ( req, res ) => {
+const usersPost = async ( req = request, res = response ) => {
 
     // Mandamos solo datos necesarios que requerimos del usuario al backend
     // Si tenemos muchos cambios se utiliza operador ...rest
@@ -73,7 +70,7 @@ const usersPost = async ( req, res ) => {
 
 };
 
-const usersDelete = async( req, res ) => {
+const usersDelete = async( req = request, res = response ) => {
 
     const { id } = req.params;
 
@@ -99,7 +96,7 @@ const usersDelete = async( req, res ) => {
     });
 };
 
-const usersPatch = ( req, res ) => {
+const usersPatch = ( req = request, res = response ) => {
     res.json({
         msg: 'patch API - controller'
     });
