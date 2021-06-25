@@ -14,9 +14,12 @@ const dbConnection = async() => {
 
         console.log( 'Connected to DB CLOUD' );
 
-    } catch {
+    } catch(error) {
+
         console.log( error );
+
         throw new Error( 'Error al inicializar la conexión a la DB' );
+        
     }
 }
 

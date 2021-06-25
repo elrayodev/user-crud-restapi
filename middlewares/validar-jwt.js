@@ -39,8 +39,6 @@ const validarJWT = async( req = request , res = response, next ) => {
         // Creamos prop uid en objeto req
         req.uid = uid;
 
-        next();
-
     }catch(err){
 
         console.log(err);
