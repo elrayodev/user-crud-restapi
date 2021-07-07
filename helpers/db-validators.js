@@ -146,6 +146,19 @@ const productoExistePorNombre = async( nombre ) => {
 
 }
 
+// -------------------------- VALIDACIONES DE COLLECTIONES EN BD --------------------------
+const coleccionesPermitidas = ( coleccion = '', colecciones = []) => {
+
+    const incluida =  colecciones.includes( coleccion );
+
+    if( !incluida ){
+        throw new Error(`La coleccion ${ coleccion } no es permitida - colecciones permitidas ${ colecciones }`);
+    }
+
+    return true;
+
+}
+
 module.exports = {
     esRolValido,
     emailExiste,
@@ -154,5 +167,6 @@ module.exports = {
     // categoriaRestringida,
     categoriaExistePorNombre,
     productoExistePorId,
-    productoExistePorNombre
+    productoExistePorNombre,
+    coleccionesPermitidas
 }

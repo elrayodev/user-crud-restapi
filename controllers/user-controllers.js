@@ -96,16 +96,9 @@ const usersDelete = async( req = request, res = response ) => {
     });
 };
 
-const usersPatch = ( req = request, res = response ) => {
-    res.json({
-        msg: 'patch API - controller'
-    });
-};
-
 module.exports = {
     usersGet,
     usersPut,
     usersPost,
-    usersDelete,
-    usersPatch
+    usersDelete
 }

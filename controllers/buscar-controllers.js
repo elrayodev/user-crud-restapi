@@ -166,39 +166,9 @@ const busqueda = ( req, res ) => {
 
     }
 
-    // if( !coleccionesPermitidas.includes( coleccion ) ){
-        
-    //     res.status(400).json({
-    //         msg: `Las coleccciones permitidas son: ${ coleccionesPermitidas }`
-    //     });
-
-    // }
-
-    // switch( coleccion ){
-
-    //     case 'usuarios':
-    //         buscarUsuarios( termino, res );    
-    //     break;
-
-    //     case 'categorias':
-    //             buscarCategoria( termino, res );
-    //     break;
-
-    //     case 'productos':
-    //             buscarProductos( termino, res );
-    //     break;
-
-    //     default:
-    //         res.status(500).json({
-    //             msg: 'Busqueda aún no implementada'
-    //         });
-
-    // }
-
 }
 
 
 module.exports = {
-    busqueda,
-    buscarProductosByCategoria
+    busqueda
 }
