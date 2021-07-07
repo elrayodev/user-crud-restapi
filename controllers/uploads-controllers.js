@@ -207,12 +207,12 @@ const getImagen = async( req, res ) => {
     // Limpiar imagenes previas
     try{
         if( modelo.img ){
-            // Hay que borrar la imagen del servidor 
-            const pathImagen = path.join( __dirname, '../uploads', coleccion, modelo.img );
+
+            const { tempFilePath } = req.files.archivo;
+            const { secure_url } = await cloudinary.uploader.upload( tempFilePath );
+            modelo.img = secure_url;
             
-            if( fs.existsSync( pathImagen ) ){
-                return res.sendFile( pathImagen );
-            }
+            return res.sendFile( modelo.img );
         }
     }catch(error){
         throw new Error( error );
